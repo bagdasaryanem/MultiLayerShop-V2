@@ -1,0 +1,64 @@
+﻿@model MultiLayerApp.DataAccess.Domain.ShoppingCart
+
+<form method="post">
+    <input hidden asp-for="ProductId" />
+    <div class="main">
+        <div class="phone-description p-4">
+            @if (Model.Product.Photos != null)
+            {
+                <img class="phone-img" src="@Model.Product.Photos" />
+            }
+            else
+            {
+                <img class="phone-img" src="/images/unnamed.png" />
+            }
+            <div class="phone-description-body">
+                <h3>
+                    @Model.Product.Name
+                </h3>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Manufacturer</th>
+                            <td>@Model.Product.Category.Name</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Size</th>
+                            <td>@Model.Product.Size</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Weight</th>
+                            <td>@Model.Product.Weight</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Display Size</th>
+                            <td>@Model.Product.DisplaySize</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Processor</th>
+                            <td>@Model.Product.Processor</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Memory</th>
+                            <td>@Model.Product.Memory</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Operating System</th>
+                            <td>@Model.Product.OperatingSystem</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="price p-3">
+            <h3>@Model.Product.Price ₾</h3>
+            <div style="display: flex; justify-content: space-between; align-items: center" ;>
+                <label style="margin-right: 10px; font-size: 20px">Count: </label>
+                <input type="number" asp-for="Count" class="form-control" min="0" style="width: 70px; text-align: center; margin-right: 20px; font-size: 20px;" />
+                <button type="submit" value="Add to Cart" class="btn btn-danger btn-lg">Add to Cart</button>
+            </div>
+
+        </div>
+    </div>
+</form>

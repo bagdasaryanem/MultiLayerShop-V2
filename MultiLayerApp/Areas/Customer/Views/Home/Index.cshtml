@@ -1,0 +1,122 @@
+﻿@model cloudscribe.Pagination.Models.PagedResult<Product>
+
+    @{
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    <div class="main">
+        <div class="filter m-2">
+            <form asp-action="Index" method="get">
+                <div class="price">
+                    <label class="form-label">Price</label>
+                    <div class="price-flexbox">
+                        <div class="mx-1">
+                            <input type="number"
+                                   name="priceFrom"
+                                   value="@(ViewBag.priceFrom ?? String.Empty)"
+                                   class="form-control"
+                                   min="0"
+                                   id="from"
+                                   placeholder="From" />
+                        </div>
+                        -
+                        <div class="mx-1">
+                            <input type="number"
+                                   name="priceTo"
+                                   value="@(ViewBag.priceTo ?? String.Empty)"
+                                   class="form-control"
+                                   min="0"
+                                   id="to"
+                                   placeholder="To" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="name mt-2">
+                    <label for="phoneName" class="form-label">Name</label>
+                    <input type="text"
+                           name="searchString"
+                           value="@(ViewBag.searchString ?? String.Empty)"
+                           class="form-control"
+                           id="phoneName"
+                           placeholder="Phone name" />
+                </div>
+
+                <div class="manufacturer mt-2">
+                    <label for="manufacturer" class="form-label">Manufacturer</label>
+                    @Html.DropDownList("category", (IEnumerable
+                                     <SelectListItem>)ViewBag.categoryList, "Select a category",
+                                     new { @class = "form-control" })
+                </div>
+                <div class="search mt-3">
+                    <button type="submit" class="btn btn-primary">
+                        Search
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             width="16"
+                             height="16"
+                             fill="currentColor"
+                             class="bi bi-search"
+                             viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+                            <path fill-rule="evenodd"
+                                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                        </svg>
+                    </button>
+                    <a asp-action="Index" class="btn btn-link">Remove Filter </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="container phone-grid">
+            <div class="row">
+
+                @if (Model.Data.Any())
+                {
+                    @foreach (var item in Model.Data)
+                    {
+                        <!-- Phone -->
+                        <div class="col-sm-3 p-2 phone-grid-item">
+                            <div class="phone-grid-item-content">
+                                <div class="card">
+
+                                    @if (item.Photos != null)
+                                    {
+                                        <a style="display: flex; justify-content: center;" asp-controller="Home" asp-action="Details" asp-route-id="@item.Id"><img class="card-img-top phone-img" src="@Html.DisplayFor(m => item.Photos)" /></a>
+                                    }
+                                    else
+                                    {
+                                        <a style="display: flex; justify-content: center;" asp-controller="Home" asp-action="Details" asp-route-id="@item.Id"><img class="card-img-top phone-img" src="/images/unnamed.png" /></a>
+                                    }
+
+                                    <div class="card-body">
+                                        <h5 class="card-title"><a asp-controller="Home" asp-action="Details" asp-route-id="@item.Id">@item.Name</a></h5>
+                                        <div class="price">
+                                            <p>@Html.DisplayFor(m => item.Price)  ₾</p>
+                                            <div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Phone -->
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="pagination-wrapper">
+        <cs-pager cs-paging-pagenumber=Model.PageNumber
+                  cs-paging-totalitems=Model.TotalItems
+                  cs-paging-pagesize=Model.PageSize
+                  cs-pagenumber-param="pagenumber"
+                  asp-controller="Home"
+                  asp-action="Index"
+                  cs-pager-li-current-class="page-item active"
+                  cs-pager-li-other-class="page-item"
+                  cs-pager-li-non-active-class="page-item disabled"
+                  cs-pager-link-current-class="page-link"
+                  cs-pager-link-other-class="page-link">
+        </cs-pager>
+    </div>
