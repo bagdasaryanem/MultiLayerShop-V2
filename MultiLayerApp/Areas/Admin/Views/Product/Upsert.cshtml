@@ -11,109 +11,143 @@
             {
                 <input type="hidden" asp-for="Product.Id" />
             }
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <th scope="row">
-                            <label asp-for="Product.Name" class="form-label">Name</label>
-                        </th>
-                        <td>
-                            <input asp-for="Product.Name" class="form-control" />
-                            <span asp-validation-for="Product.Name" class="text-danger"></span>
-                        </td>
-                    </tr>
+            <div class="formWrapper">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <label asp-for="Product.Name" class="form-label">Name</label>
+                            </th>
+                            <td>
+                                <input type="text"
+                                       class="form-control"
+                                       asp-for="Product.Name" />
 
-                <tr>
-                        <th scope="row">
-                            Image
-                        </th>
-                        <td>
-                            <input type="file" name="files" id="uploadBox" multiple class="form-control" />
-                        </td>
-                    </tr>
+                                <span asp-validation-for="Product.Name"
+                                      class="text-danger"></span>
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <th scope="row">
-                            Category
-                        </th>
-                        <td>
-                            @Html.DropDownListFor(m => m.Product.CategoryId, Model.CategoryList, "-Select a Category",
-                                new { @class = "form-control" })
-                            <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
-                        </td>
-                    </tr>
+                        <tr>
+                            <th scope="row">Image</th>
+                            <td>
+                                <input type="file"
+                                       name="files"
+                                       id="uploadBox"
+                                       multiple
+                                       class="form-control" />
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <th scope="row">
-                            <label asp-for="Product.Size" class="form-label">Size</label>
-                        </th>
-                        <td>
-                            <input asp-for="Product.Size" class="form-control" />
-                            <span asp-validation-for="Product.Size" class="text-danger"></span>
-                        </td>
-                    </tr>
+                        <tr>
+                            <th scope="row">Category</th>
+                            <td>
+                                @Html.DropDownListFor(m => m.Product.CategoryId,
+                                Model.CategoryList, "-Select a Category", new
+                                     {
+                                         @class =
+                                "form-control"
+                                     })
+                                <span asp-validation-for="Product.CategoryId"
+                                      class="text-danger"></span>
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <th scope="row">
-                            <label asp-for="Product.Weight" class="form-label">Weight</label>
-                        </th>
-                        <td>
-                            <input asp-for="Product.Weight" class="form-control" />
-                            <span asp-validation-for="Product.Weight" class="text-danger"></span>
-                        </td>
-                    </tr>
+                        <tr>
+                            <th scope="row">
+                                <label asp-for="Product.Size" class="form-label">Size</label>
+                            </th>
+                            <td>
+                                <input type="text"
+                                       class="form-control"
+                                       asp-for="Product.Size" />
 
-                    <tr>
-                        <th scope="row">
-                            <label asp-for="Product.DisplaySize" class="form-label">Display Size</label>
-                        </th>
-                        <td>
-                            <input asp-for="Product.DisplaySize" class="form-control" />
-                            <span asp-validation-for="Product.DisplaySize" class="text-danger"></span>
-                        </td>
-                    </tr>
+                                <span asp-validation-for="Product.Size"
+                                      class="text-danger"></span>
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <th scope="row">
-                            <label asp-for="Product.Processor" class="form-label">Processor</label>
-                        </th>
-                        <td>
-                            <input asp-for="Product.Processor" class="form-control" />
-                            <span asp-validation-for="Product.Processor" class="text-danger"></span>
-                        </td>
-                    </tr>
+                        <tr>
+                            <th scope="row">
+                                <label asp-for="Product.Weight" class="form-label">Weight</label>
+                            </th>
+                            <td>
+                                <input type="text"
+                                       class="form-control"
+                                       asp-for="Product.Weight" />
 
-                    <tr>
-                        <th scope="row">
-                            <label asp-for="Product.Memory" class="form-label">Memory</label>
-                        </th>
-                        <td>
-                            <input asp-for="Product.Memory" class="form-control" min="0"/>
-                            <span asp-validation-for="Product.Memory" class="text-danger"></span>
-                        </td>
-                    </tr>
+                                <span asp-validation-for="Product.Weight"
+                                      class="text-danger"></span>
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <th scope="row">
-                            <label asp-for="Product.OperatingSystem" class="form-label">Operating System</label>
-                        </th>
-                        <td>
-                            <input asp-for="Product.OperatingSystem" class="form-control" />
-                            <span asp-validation-for="Product.OperatingSystem" class="text-danger"></span>
-                        </td>
-                    </tr>
+                        <tr>
+                            <th scope="row">
+                                <label asp-for="Product.DisplaySize" class="form-label">Display Size</label>
+                            </th>
+                            <td>
+                                <input type="text"
+                                       class="form-control"
+                                       asp-for="Product.DisplaySize" /><span asp-validation-for="Product.DisplaySize"
+                                                                             class="text-danger"></span>
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <th scope="row">
-                            <label asp-for="Product.Price" class="form-label">Price</label>
-                        </th>
-                        <td>
-                            <input asp-for="Product.Price" class="form-control" min="0" />
-                            <span asp-validation-for="Product.Price" class="text-danger"></span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                        <tr>
+                            <th scope="row">
+                                <label asp-for="Product.Processor" class="form-label">Processor</label>
+                            </th>
+                            <td>
+                                <input type="text"
+                                       class="form-control"
+                                       asp-for="Product.Processor" />
+                                <span asp-validation-for="Product.Processor"
+                                      class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <label asp-for="Product.Memory" class="form-label">Memory</label>
+                            </th>
+                            <td>
+                                <input type="number"
+                                       class="form-control"
+                                       asp-for="Product.Memory"
+                                       min="0" />
+
+                                <span asp-validation-for="Product.Memory"
+                                      class="text-danger"></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                <label asp-for="Product.OperatingSystem" class="form-label">Operating System</label>
+                            </th>
+                            <td>
+                                <input asp-for="Product.OperatingSystem" class="form-control" />
+                                <span asp-validation-for="Product.OperatingSystem"
+                                      class="text-danger"></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                <label asp-for="Product.Price" class="form-label">Price</label>
+                            </th>
+                            <td>
+                                <input asp-for="Product.Price" class="form-control" min="0" />
+                                <span asp-validation-for="Product.Price"
+                                      class="text-danger"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                @if (Model.Product.Id != 0)
+                {
+                    <img src="@Model.Product.Photos" />
+                }
+            </div>
             <div style="display: flex; justify-content: space-around">
                 <button type="submit"
                         class="btn btn-success"
@@ -132,12 +166,6 @@
                 </button>
 
                 <a asp-action="Index" class="btn btn-danger">Back</a>
-                @if (Model.Product.Id != 0)
-                {
-                    <div class="col-3 offset-1 pt-4">
-                        <img src="@Model.Product.Photos" width="300" style="border-radius:5px; border:1px solid #bbb9b9" />
-                    </div>
-                }
             </div>
         </form>
     </div>
