@@ -32,7 +32,7 @@ namespace MultiLayerApp.Areas.Customer.Controllers
         {
             IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category");
             if (!String.IsNullOrEmpty(searchString))
-                productList = productList.Where(x => x.Name.ToLower().Contains(searchString));
+                productList = productList.Where(x => x.Name.ToLower().Contains(searchString.ToLower()));
 
             var categoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
             {
